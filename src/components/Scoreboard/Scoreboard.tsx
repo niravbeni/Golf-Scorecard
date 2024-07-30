@@ -1,55 +1,124 @@
 import { FC } from "react";
-
-import { ScoreboardWrapper } from "./Scoreboard.styled";
+import {
+  ScoreboardWrapper,
+  Tablewrapper,
+  Table,
+  TableCell,
+  TableRow,
+  PlayerName,
+  PlayerNameText,
+  HammerIcon,
+  TotalScore,
+  CellContent,
+  PointValue,
+  TableHeaderCell,
+  PointValueContainer,
+  HammerIconContainer,
+} from "./Scoreboard.styled";
 import { IScoreboard } from "./Scoreboard.types";
+import Hammer from "../Svgs/Hammer/Hammer";
 
 const Scoreboard: FC<IScoreboard> = ({
   players = [],
-  // holes = [],
+  holes = [],
   hammerThrows = [],
+  currentHole = 0,
+  currentPlayer = 0,
 }) => {
+  const getHammerHolderForHole = (holeNumber: number) => {
+    let currentHolder = 0;
+    for (const throw_ of hammerThrows) {
+      if (throw_.holeNumber > holeNumber) break;
+      if (throw_.accepted) {
+        currentHolder = currentHolder === 0 ? 1 : 0;
+      } else {
+        currentHolder = throw_.playerId;
+      }
+    }
+    return currentHolder;
+  };
+
+  const getHammerThrow = (holeNumber: number) => {
+    return hammerThrows.find(
+      (currentThrow) => currentThrow.holeNumber === holeNumber
+    );
+  };
+
   return (
     <ScoreboardWrapper>
-      <div className="Scoreboard">
-        <h2>Scoreboard</h2>
-        <table>
+      <Tablewrapper>
+        <Table>
           <thead>
             <tr>
-              <th>Player</th>
-              <th>Score</th>
+              <TableHeaderCell $isCurrentHole={false}>Player</TableHeaderCell>
+              {holes.map((hole) => (
+                <TableHeaderCell
+                  key={hole.holeNumber}
+                  $isCurrentHole={hole.holeNumber === currentHole}
+                >
+                  {hole.holeNumber}
+                </TableHeaderCell>
+              ))}
+              <TableHeaderCell $isCurrentHole={false}>Total</TableHeaderCell>
             </tr>
           </thead>
           <tbody>
-            {players.map((player, index) => (
-              <tr key={index}>
-                <td>{player.name}</td>
-                <td>{player.points}</td>
-              </tr>
+            {players.map((player) => (
+              <TableRow
+                key={player.id}
+                $isCurrentPlayer={player.id === currentPlayer}
+              >
+                <PlayerName $isCurrentPlayer={player.id === currentPlayer}>
+                  <PlayerNameText>{player.name}</PlayerNameText>
+                  {getHammerHolderForHole(currentHole) === player.id && (
+                    <HammerIcon>
+                      <Hammer isFilled={true} />
+                    </HammerIcon>
+                  )}
+                </PlayerName>
+                {player.points.map((point, index) => {
+                  const holeNumber = index + 1;
+                  const hammerThrow = getHammerThrow(holeNumber);
+                  return (
+                    <TableCell
+                      key={index}
+                      $isCurrentHole={holeNumber === currentHole}
+                      $isCurrentPlayer={player.id === currentPlayer}
+                    >
+                      <CellContent>
+                        <PointValueContainer>
+                          <PointValue>{point}</PointValue>
+                        </PointValueContainer>
+                        <HammerIconContainer>
+                          {hammerThrow && (
+                            <Hammer
+                              isFilled={hammerThrow.playerId === player.id}
+                              width="16px"
+                              height="16px"
+                              color={
+                                hammerThrow.playerId === player.id
+                                  ? hammerThrow.accepted
+                                    ? "green"
+                                    : "red"
+                                  : hammerThrow.accepted
+                                  ? "red"
+                                  : "green"
+                              }
+                            />
+                          )}
+                        </HammerIconContainer>
+                      </CellContent>
+                    </TableCell>
+                  );
+                })}
+                <TotalScore>
+                  {player.points.reduce((acc, curr) => acc + curr, 0)}
+                </TotalScore>
+              </TableRow>
             ))}
           </tbody>
-        </table>
-        <h2>Hammer Throws</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>PlayerID</th>
-              <th>Hole</th>
-              <th>Accepted?</th>
-              <th>Won?</th>
-            </tr>
-          </thead>
-          <tbody>
-            {hammerThrows.map((h, index) => (
-              <tr key={index}>
-                <td>{h.playerId}</td>
-                <td>{h.holeNumber}</td>
-                <td>{h.accepted ? "YES" : "NO"}</td>
-                <td>{h.won ? "YES" : "NO"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+        </Table>
+      </Tablewrapper>
     </ScoreboardWrapper>
   );
 };
