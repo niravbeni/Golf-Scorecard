@@ -145,8 +145,3 @@ export const TotalScore = styled.td<{ $isCurrentPlayer: boolean }>`
   overflow: hidden;
   font-size: 36px;
 `;
-
-export const RotatedHammer = styled.div<{ $rotation?: number }>`
-  transform: ${(props) => `rotate(${props.$rotation || -90}deg)`};
-  display: inline-flex;
-`;

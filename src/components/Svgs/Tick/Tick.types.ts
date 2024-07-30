@@ -1,4 +1,4 @@
-export interface IHammer extends React.SVGProps<SVGSVGElement> {
+export interface ITick extends React.SVGProps<SVGSVGElement> {
   isFilled: boolean;
   width?: string;
   height?: string;

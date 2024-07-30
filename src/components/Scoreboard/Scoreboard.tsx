@@ -14,10 +14,11 @@ import {
   TableHeaderCell,
   PointValueContainer,
   HammerIconContainer,
-  RotatedHammer,
 } from "./Scoreboard.styled";
 import { IScoreboard } from "./Scoreboard.types";
 import Hammer from "../Svgs/Hammer/Hammer";
+import Tick from "../Svgs/Tick/Tick";
+import Cross from "../Svgs/Cross/Cross";
 
 const Scoreboard: FC<IScoreboard> = ({
   players = [],
@@ -74,6 +75,8 @@ const Scoreboard: FC<IScoreboard> = ({
                       <HammerIcon>
                         <Hammer
                           isFilled={true}
+                          width="20px"
+                          height="20px"
                           color={isCurrentPlayer ? "white" : "black"}
                         />
                       </HammerIcon>
@@ -93,16 +96,23 @@ const Scoreboard: FC<IScoreboard> = ({
                             <PointValue>{point}</PointValue>
                           </PointValueContainer>
                           <HammerIconContainer>
-                            {hammerThrow && (
-                              <RotatedHammer>
-                                <Hammer
-                                  isFilled={hammerThrow.playerId === player.id}
-                                  width="16px"
-                                  height="16px"
+                            {hammerThrow &&
+                              hammerThrow.playerId === player.id &&
+                              (hammerThrow.accepted ? (
+                                <Tick
+                                  isFilled={true}
+                                  width="17px"
+                                  height="17px"
                                   color={isCurrentPlayer ? "white" : "black"}
                                 />
-                              </RotatedHammer>
-                            )}
+                              ) : (
+                                <Cross
+                                  isFilled={true}
+                                  width="18px"
+                                  height="18px"
+                                  color={isCurrentPlayer ? "white" : "black"}
+                                />
+                              ))}
                           </HammerIconContainer>
                         </CellContent>
                       </TableCell>

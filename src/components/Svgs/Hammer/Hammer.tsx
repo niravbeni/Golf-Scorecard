@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { IHammerIcon } from "./Hammer.types";
+import { IHammer } from "./Hammer.types";
 
-export const Hammer: FC<IHammerIcon> = ({
+export const Hammer: FC<IHammer> = ({
   isFilled,
   width = "20px",
   height = "20px",
