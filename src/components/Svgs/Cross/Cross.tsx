@@ -14,7 +14,7 @@ export const Cross: FC<ICross> = ({
       viewBox="0 0 64 64"
       fill={isFilled ? color : "none"}
       stroke={color}
-      strokeWidth="2"
+      strokeWidth="0"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g

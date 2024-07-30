@@ -1,13 +1,20 @@
 import styled from "styled-components";
+import {
+  GREY,
+  LIGHT_GREY,
+  DARK_GREY,
+  CHARCOAL,
+  WHITE,
+  BLACK,
+  LILAC,
+} from "../../constants/colours";
 
 export const ScoreboardWrapper = styled.div`
   width: 600px;
   height: 400px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid lightgrey;
 `;
 
@@ -15,9 +22,9 @@ export const Tablewrapper = styled.div`
   width: 550px;
   height: 210px;
   transform: skew(-10deg) rotateX(10deg);
-  box-shadow: 20px 15px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 20px 15px 10px rgba(0, 0, 0, 0.5);
 `;
 
 export const Table = styled.table`
@@ -28,28 +35,22 @@ export const Table = styled.table`
 `;
 
 export const TableHeaderCell = styled.th<{ $isCurrentHole: boolean }>`
-  background: linear-gradient(90deg, #d7d7d7 0%, #f5f5f5 50%);
-
   padding: 10px;
-  text-align: center;
-
-  font-size: 18px;
-
-  color: #333333;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 8px 8px 0 0;
-  border: ${(props) => (props.$isCurrentHole ? "2px solid #8D8D8D" : "none")};
+  border: ${(props) =>
+    props.$isCurrentHole ? `2px solid ${DARK_GREY}` : "none"};
   border-top: none;
   border-left: none;
-
+  text-align: center;
+  font-size: 18px;
+  background: linear-gradient(90deg, ${GREY} 0%, ${LIGHT_GREY} 50%);
+  color: ${CHARCOAL};
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: ${(props) =>
     props.$isCurrentHole ? "inset 0 5px 5px rgba(0, 0, 0, 0.1)" : "none"};
 `;
 
-export const TableRow = styled.tr<{ $isCurrentPlayer: boolean }>`
-  /*background-color: ${(props) =>
-    props.$isCurrentPlayer ? "#d4f4f4" : "transparent"};*/
-`;
+export const TableRow = styled.tr<{ $isCurrentPlayer: boolean }>``;
 
 export const TableCell = styled.td<{
   $isCurrentHole: boolean;
@@ -58,25 +59,52 @@ export const TableCell = styled.td<{
 }>`
   position: relative;
   padding: 10px;
-  text-align: center;
-
   border-radius: 8px;
-
+  border: ${(props) =>
+    props.$isCurrentHole ? `2px solid ${DARK_GREY}` : "none"};
+  border-top: none;
+  border-left: none;
+  text-align: center;
+  background-color: ${(props) => (props.$isCurrentPlayer ? LILAC : LIGHT_GREY)};
+  color: ${(props) => (props.$isCurrentPlayer ? WHITE : BLACK)};
   box-shadow: ${(props) =>
     props.$isShowPoints
       ? "inset 0 5px 5px rgba(0, 0, 0, 0.075)"
       : "inset 0 5px 5px rgba(0, 0, 0, 0.175)"};
-
-  border: ${(props) => (props.$isCurrentHole ? "2px solid #8D8D8D" : "none")};
-  border-top: none;
-  border-left: none;
-  background-color: ${(props) =>
-    props.$isCurrentPlayer ? "#a6dba2" : "#f7f7f7"};
-  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
 `;
 
-export const PointValue = styled.span`
-  font-size: 18px;
+export const PlayerName = styled.td<{ $isCurrentPlayer: boolean }>`
+  display: flex;
+  height: 100%;
+  padding: 8px;
+  border-radius: 8px 0 0 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  background: ${(props) =>
+    props.$isCurrentPlayer
+      ? `linear-gradient(90deg, #333333 0%, ${BLACK} 100%)`
+      : `linear-gradient(90deg, #ffffff 0%, ${LIGHT_GREY} 100%)`};
+  color: ${(props) => (props.$isCurrentPlayer ? WHITE : "")};
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.05);
+`;
+
+export const TotalScore = styled.td<{ $isCurrentPlayer: boolean }>`
+  position: relative;
+  padding: 10px;
+  border-radius: 0 12px 12px 0;
+  overflow: hidden;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  background: ${(props) =>
+    props.$isCurrentPlayer
+      ? `linear-gradient(270deg, #333333 0%, ${BLACK} 100%)`
+      : `linear-gradient(270deg, #ffffff 0%, ${LIGHT_GREY} 100%)`};
+  color: ${(props) => (props.$isCurrentPlayer ? WHITE : BLACK)};
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.05);
 `;
 
 export const CellContent = styled.div`
@@ -88,22 +116,8 @@ export const CellContent = styled.div`
   padding: 5px 0;
 `;
 
-export const PlayerName = styled.td<{ $isCurrentPlayer: boolean }>`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background: ${(props) =>
-    props.$isCurrentPlayer
-      ? "linear-gradient(90deg, #363636 0%, #000000 100%)"
-      : "linear-gradient(90deg, #ffffff 0%, #f7f7f7 100%)"};
-  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
-  padding: 8px;
-  text-align: left;
-  font-weight: bold;
-  border-radius: 8px 0 0 8px;
-  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.05);
-  font-size: 14px;
+export const PointValue = styled.span`
+  font-size: 18px;
 `;
 
 export const PointValueContainer = styled.div`
@@ -128,20 +142,4 @@ export const PlayerNameText = styled.span`
 export const HammerIcon = styled.span`
   display: inline-flex;
   align-items: center;
-`;
-
-export const TotalScore = styled.td<{ $isCurrentPlayer: boolean }>`
-  background: ${(props) =>
-    props.$isCurrentPlayer
-      ? "linear-gradient(270deg, #363636 0%, #000000 100%)"
-      : "linear-gradient(270deg, #ffffff 0%, #f7f7f7 100%)"};
-  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 0 12px 12px 0;
-  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-  font-size: 36px;
 `;

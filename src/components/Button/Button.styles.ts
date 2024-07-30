@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LIGHT_GREY, GREY } from "../../constants/colours";
 
 export const StyledButton = styled.button`
   width: 100px;
@@ -12,12 +13,12 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: #f2f2f2;
+  background-color: ${LIGHT_GREY};
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #e6e6e6;
+    background-color: ${GREY};
   }
 `;

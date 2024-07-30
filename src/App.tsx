@@ -1,7 +1,6 @@
-import { ButtonWrapper } from "./App.styles";
-
 import { useState } from "react";
 
+import { ButtonWrapper } from "./App.styles";
 import { data } from "./constants/data";
 
 import Button from "./components/Button/Button";
@@ -12,20 +11,17 @@ function App() {
   const [currentHole, setCurrentHole] = useState(9);
 
   const handlePlayerToggle = () => {
-    setCurrentPlayer((currentPlayer + 1) % data.players.length);
+    setCurrentPlayer((prevPlayer) => (prevPlayer + 1) % data.players.length);
   };
 
   const handleHoleChange = () => {
-    setCurrentHole((prevHole) => {
-      const nextHole = prevHole + 1;
-      return nextHole > data.holes.length ? 1 : nextHole;
-    });
+    setCurrentHole((prevHole) => (prevHole % data.holes.length) + 1);
   };
   return (
     <>
       <ButtonWrapper>
         <Button onClick={handlePlayerToggle}>
-          Toggle Player : {currentPlayer}
+          Toggle Player : {currentPlayer + 1}
         </Button>
         <Button onClick={handleHoleChange}>Toggle Hole : {currentHole} </Button>
       </ButtonWrapper>
