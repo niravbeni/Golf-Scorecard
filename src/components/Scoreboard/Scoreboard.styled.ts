@@ -133,8 +133,10 @@ export const HammerIcon = styled.span`
 `;
 
 export const TotalScore = styled.td<{ $isCurrentPlayer: boolean }>`
-  background-color: ${(props) =>
-    props.$isCurrentPlayer ? "#000000" : "#f7f7f7"};
+  background: ${(props) =>
+    props.$isCurrentPlayer
+      ? "linear-gradient(270deg, #363636 0%, #000000 100%)"
+      : "linear-gradient(270deg, #ffffff 0%, #f7f7f7 100%)"};
   color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
   padding: 10px;
   text-align: center;
