@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <ButtonWrapper>
-        <Button onClick={handlePlayerToggle}>TogglePlayer</Button>
+        <Button onClick={handlePlayerToggle}>Toggle Player</Button>
         <Button onClick={handleHoleChange}>Toggle Hole : {currentHole} </Button>
       </ButtonWrapper>
       <Scoreboard

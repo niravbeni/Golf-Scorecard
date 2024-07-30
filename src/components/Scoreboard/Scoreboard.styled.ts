@@ -29,7 +29,7 @@ export const Table = styled.table`
 `;
 
 export const TableHeaderCell = styled.th<{ $isCurrentHole: boolean }>`
-  background: linear-gradient(90deg, #e0e0e0 0%, #f5f5f5 50%);
+  background: linear-gradient(90deg, #d7d7d7 0%, #f5f5f5 50%);
 
   padding: 10px;
   text-align: center;
@@ -73,7 +73,8 @@ export const TableCell = styled.td<{
   border-top: none;
   border-left: none;
   background-color: ${(props) =>
-    props.$isCurrentPlayer ? "#b3e5fc" : "#f7f7f7"};
+    props.$isCurrentPlayer ? "#a6dba2" : "#f7f7f7"};
+  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
 `;
 
 export const PointValue = styled.span`
@@ -96,8 +97,9 @@ export const PlayerName = styled.td<{ $isCurrentPlayer: boolean }>`
   justify-content: center;
   background: ${(props) =>
     props.$isCurrentPlayer
-      ? "linear-gradient(90deg, #b3e5fc 0%, #c5e8fc 100%)"
+      ? "linear-gradient(90deg, #363636 0%, #000000 100%)"
       : "linear-gradient(90deg, #ffffff 0%, #f7f7f7 100%)"};
+  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
   padding: 8px;
   text-align: left;
   font-weight: bold;
@@ -130,14 +132,21 @@ export const HammerIcon = styled.span`
   align-items: center;
 `;
 
-export const TotalScore = styled.td`
-  background: linear-gradient(90deg, #f4d4f4 0%, #fce4ec 100%);
-  padding: 15px;
+export const TotalScore = styled.td<{ $isCurrentPlayer: boolean }>`
+  background-color: ${(props) =>
+    props.$isCurrentPlayer ? "#000000" : "#f7f7f7"};
+  color: ${(props) => (props.$isCurrentPlayer ? "white" : "black")};
+  padding: 10px;
   text-align: center;
   font-weight: bold;
   border-radius: 0 12px 12px 0;
   box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
-  font-size: 28px;
+  font-size: 36px;
+`;
+
+export const RotatedHammer = styled.div<{ $rotation?: number }>`
+  transform: ${(props) => `rotate(${props.$rotation || -90}deg)`};
+  display: inline-flex;
 `;

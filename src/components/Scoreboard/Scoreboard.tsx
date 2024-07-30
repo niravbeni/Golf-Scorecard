@@ -14,6 +14,7 @@ import {
   TableHeaderCell,
   PointValueContainer,
   HammerIconContainer,
+  RotatedHammer,
 } from "./Scoreboard.styled";
 import { IScoreboard } from "./Scoreboard.types";
 import Hammer from "../Svgs/Hammer/Hammer";
@@ -63,59 +64,56 @@ const Scoreboard: FC<IScoreboard> = ({
             </tr>
           </thead>
           <tbody>
-            {players.map((player) => (
-              <TableRow
-                key={player.id}
-                $isCurrentPlayer={player.id === currentPlayer}
-              >
-                <PlayerName $isCurrentPlayer={player.id === currentPlayer}>
-                  <PlayerNameText>{player.name}</PlayerNameText>
-                  {getHammerHolderForHole(currentHole) === player.id && (
-                    <HammerIcon>
-                      <Hammer isFilled={true} />
-                    </HammerIcon>
-                  )}
-                </PlayerName>
-                {player.points.map((point, index) => {
-                  const holeNumber = index + 1;
-                  const hammerThrow = getHammerThrow(holeNumber);
-                  return (
-                    <TableCell
-                      key={index}
-                      $isCurrentHole={holeNumber === currentHole}
-                      $isCurrentPlayer={player.id === currentPlayer}
-                    >
-                      <CellContent>
-                        <PointValueContainer>
-                          <PointValue>{point}</PointValue>
-                        </PointValueContainer>
-                        <HammerIconContainer>
-                          {hammerThrow && (
-                            <Hammer
-                              isFilled={hammerThrow.playerId === player.id}
-                              width="16px"
-                              height="16px"
-                              color={
-                                hammerThrow.playerId === player.id
-                                  ? hammerThrow.accepted
-                                    ? "green"
-                                    : "red"
-                                  : hammerThrow.accepted
-                                  ? "red"
-                                  : "green"
-                              }
-                            />
-                          )}
-                        </HammerIconContainer>
-                      </CellContent>
-                    </TableCell>
-                  );
-                })}
-                <TotalScore>
-                  {player.points.reduce((acc, curr) => acc + curr, 0)}
-                </TotalScore>
-              </TableRow>
-            ))}
+            {players.map((player) => {
+              const isCurrentPlayer = player.id === currentPlayer;
+              return (
+                <TableRow key={player.id} $isCurrentPlayer={isCurrentPlayer}>
+                  <PlayerName $isCurrentPlayer={isCurrentPlayer}>
+                    <PlayerNameText>{player.name}</PlayerNameText>
+                    {getHammerHolderForHole(currentHole) === player.id && (
+                      <HammerIcon>
+                        <Hammer
+                          isFilled={true}
+                          color={isCurrentPlayer ? "white" : "black"}
+                        />
+                      </HammerIcon>
+                    )}
+                  </PlayerName>
+                  {player.points.map((point, index) => {
+                    const holeNumber = index + 1;
+                    const hammerThrow = getHammerThrow(holeNumber);
+                    return (
+                      <TableCell
+                        key={index}
+                        $isCurrentHole={holeNumber === currentHole}
+                        $isCurrentPlayer={isCurrentPlayer}
+                      >
+                        <CellContent>
+                          <PointValueContainer>
+                            <PointValue>{point}</PointValue>
+                          </PointValueContainer>
+                          <HammerIconContainer>
+                            {hammerThrow && (
+                              <RotatedHammer>
+                                <Hammer
+                                  isFilled={hammerThrow.playerId === player.id}
+                                  width="16px"
+                                  height="16px"
+                                  color={isCurrentPlayer ? "white" : "black"}
+                                />
+                              </RotatedHammer>
+                            )}
+                          </HammerIconContainer>
+                        </CellContent>
+                      </TableCell>
+                    );
+                  })}
+                  <TotalScore $isCurrentPlayer={isCurrentPlayer}>
+                    {player.points.reduce((acc, curr) => acc + curr, 0)}
+                  </TotalScore>
+                </TableRow>
+              );
+            })}
           </tbody>
         </Table>
       </Tablewrapper>
