@@ -16,7 +16,6 @@ export const Tablewrapper = styled.div`
   height: 210px;
   transform: skew(-10deg) rotateX(10deg);
   box-shadow: 20px 15px 10px rgba(0, 0, 0, 0.5);
-  // background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   border-radius: 10px;
   overflow: hidden;
 `;
@@ -55,6 +54,7 @@ export const TableRow = styled.tr<{ $isCurrentPlayer: boolean }>`
 export const TableCell = styled.td<{
   $isCurrentHole: boolean;
   $isCurrentPlayer: boolean;
+  $isShowPoints: boolean;
 }>`
   position: relative;
   padding: 10px;
@@ -62,12 +62,10 @@ export const TableCell = styled.td<{
 
   border-radius: 8px;
 
-  /*box-shadow: ${(props) =>
-    props.$isCurrentHole
-      ? "inset 0 5px 5px rgba(0, 0, 0, 0.1)"
-      : "0 2px 5px rgba(0, 0, 0, 0.05)"};*/
-
-  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075);
+  box-shadow: ${(props) =>
+    props.$isShowPoints
+      ? "inset 0 5px 5px rgba(0, 0, 0, 0.075)"
+      : "inset 0 5px 5px rgba(0, 0, 0, 0.175)"};
 
   border: ${(props) => (props.$isCurrentHole ? "2px solid #8D8D8D" : "none")};
   border-top: none;
@@ -109,14 +107,14 @@ export const PlayerName = styled.td<{ $isCurrentPlayer: boolean }>`
 `;
 
 export const PointValueContainer = styled.div`
-  height: 20px; // Adjust this value as needed
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const HammerIconContainer = styled.div`
-  height: 20px; // Adjust this value as needed
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;

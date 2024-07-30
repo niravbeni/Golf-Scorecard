@@ -9,7 +9,7 @@ import Scoreboard from "./components/Scoreboard/Scoreboard";
 
 function App() {
   const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [currentHole, setCurrentHole] = useState(1);
+  const [currentHole, setCurrentHole] = useState(9);
 
   const handlePlayerToggle = () => {
     setCurrentPlayer((currentPlayer + 1) % data.players.length);
@@ -24,7 +24,9 @@ function App() {
   return (
     <>
       <ButtonWrapper>
-        <Button onClick={handlePlayerToggle}>Toggle Player</Button>
+        <Button onClick={handlePlayerToggle}>
+          Toggle Player : {currentPlayer}
+        </Button>
         <Button onClick={handleHoleChange}>Toggle Hole : {currentHole} </Button>
       </ButtonWrapper>
       <Scoreboard

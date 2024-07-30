@@ -85,41 +85,47 @@ const Scoreboard: FC<IScoreboard> = ({
                   {player.points.map((point, index) => {
                     const holeNumber = index + 1;
                     const hammerThrow = getHammerThrow(holeNumber);
+                    const showPoints = holeNumber <= currentHole;
                     return (
                       <TableCell
                         key={index}
                         $isCurrentHole={holeNumber === currentHole}
                         $isCurrentPlayer={isCurrentPlayer}
+                        $isShowPoints={showPoints}
                       >
-                        <CellContent>
-                          <PointValueContainer>
-                            <PointValue>{point}</PointValue>
-                          </PointValueContainer>
-                          <HammerIconContainer>
-                            {hammerThrow &&
-                              hammerThrow.playerId === player.id &&
-                              (hammerThrow.accepted ? (
-                                <Tick
-                                  isFilled={true}
-                                  width="17px"
-                                  height="17px"
-                                  color={isCurrentPlayer ? "white" : "black"}
-                                />
-                              ) : (
-                                <Cross
-                                  isFilled={true}
-                                  width="18px"
-                                  height="18px"
-                                  color={isCurrentPlayer ? "white" : "black"}
-                                />
-                              ))}
-                          </HammerIconContainer>
-                        </CellContent>
+                        {showPoints && (
+                          <CellContent>
+                            <PointValueContainer>
+                              <PointValue>{point}</PointValue>
+                            </PointValueContainer>
+                            <HammerIconContainer>
+                              {hammerThrow &&
+                                hammerThrow.playerId === player.id &&
+                                (hammerThrow.accepted ? (
+                                  <Tick
+                                    isFilled={true}
+                                    width="17px"
+                                    height="17px"
+                                    color={isCurrentPlayer ? "white" : "black"}
+                                  />
+                                ) : (
+                                  <Cross
+                                    isFilled={true}
+                                    width="18px"
+                                    height="18px"
+                                    color={isCurrentPlayer ? "white" : "black"}
+                                  />
+                                ))}
+                            </HammerIconContainer>
+                          </CellContent>
+                        )}
                       </TableCell>
                     );
                   })}
                   <TotalScore $isCurrentPlayer={isCurrentPlayer}>
-                    {player.points.reduce((acc, curr) => acc + curr, 0)}
+                    {player.points
+                      .slice(0, currentHole)
+                      .reduce((acc, curr) => acc + curr, 0)}
                   </TotalScore>
                 </TableRow>
               );

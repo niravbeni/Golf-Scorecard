@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   width: 100px;
-  height: 50px;
+  height: 40px;
 
+  font-size: 10px;
+  padding: 10px;
   margin-bottom: 5px;
 
   display: flex;
