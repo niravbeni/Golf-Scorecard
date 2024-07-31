@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { LIGHT_GREY, GREY } from "../../constants/colours";
 
 export const StyledButton = styled.button`
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
 
-  font-size: 10px;
+  font-size: 12px;
   padding: 10px;
   margin-bottom: 5px;
 
