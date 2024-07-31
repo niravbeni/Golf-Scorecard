@@ -43,10 +43,10 @@ Error generating stack: `+o.message+`
   display: flex;
   gap: 5px;
 `,qo={holes:[{holeNumber:1,par:4,distance:350},{holeNumber:2,par:3,distance:182},{holeNumber:3,par:5,distance:582},{holeNumber:4,par:4,distance:460},{holeNumber:5,par:4,distance:372},{holeNumber:6,par:3,distance:156},{holeNumber:7,par:5,distance:612},{holeNumber:8,par:4,distance:402},{holeNumber:9,par:4,distance:494}],players:[{id:0,name:"Tiger Woods",points:[0,1,0,0,1,0,0,1,0]},{id:1,name:"Rory McIlroy",points:[0,0,2,0,0,0,0,0,2]}],hammerThrows:[{playerId:0,holeNumber:2,accepted:!1,won:!0,pointsWon:1},{playerId:1,holeNumber:3,accepted:!0,won:!0,pointsWon:2},{playerId:0,holeNumber:8,accepted:!1,won:!0,pointsWon:1},{playerId:1,holeNumber:9,accepted:!0,won:!0,pointsWon:2}]},Tr="#000000",Ah="#333333",ud="#8D8D8D",sd="#D7D7D7",Mr="#F5F5F5",wo="#FFFFFF",Uh="#F73939",Bh="#2BC46E",Hh="#D7BDE2",Wh=ie.button`
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 50px;
 
-  font-size: 10px;
+  font-size: 12px;
   padding: 10px;
   margin-bottom: 5px;
 
