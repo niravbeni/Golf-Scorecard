@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# Golf Scorecard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript scoreboard module for a dashboard for TV commentators to use.
 
-Currently, two official plugins are available:
+## How to view
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Open the following link:
+www.google.com
 
-## Expanding the ESLint configuration
+## Requirements & Constraints
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Needs to be visually appealing.
+- Needs to implement the game's logic correctly.
+- Needs to be constrained within a 600px by 600px space.
+- Needs to be intuitive and easy to read.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+The toggle buttons to visualize various states (hole progression and player switching).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The scoreboard has a minimal hammer (<img src="./assets/svg/hammer.svg" width="30" height="30" alt="Hammer Icon">) feature implemented.
+
+The scoreboard shows the points scored per hole by each player, current player turn, an indicator of who has the hammer, and visual cues to throws with acceptance (<img src="./assets/svg/tick.svg" width="30" height="30" alt="Tick Icon">) and rejection (<img src="./assets/svg/cross.svg" width="30" height="30" alt="Cross Icon">) modes.
+
+## My Goals
+
+- To create a visually effective yet simple design.
+- To prioritize the main information - player names, points, and their total scores (par, distance & remaining hammers were omitted).
+- To keep it relatively flat and 2D, to minimize obscuring other dashboard content.
+- To keep the design small and compact.
+- To make the code modular, robust and relatively responsive to scaling and variation in the data.
+
+## Future Improvements & Tweaks
+
+### Design
+
+- Create color themes for design variations.
+- Use a more striking font.
+- Add accessibility options.
+- Make the design responsive to potential variations in layouts and orientations.
+- Emphasize the end of match winner.
+- Differentiate the players with more contrast.
+- Further investigate edge case game states.
+
+### Development
+
+- Use Redux or some state management tool to deal with more robust datasets.
+- Add error handling capabilities.
+- Implement useMemo and useCallback for render optimizations.
+- Use Storybook for documenting and testing of the designs.
+- Implement more robust ESLint and Prettier configs.

@@ -145,8 +145,7 @@ const Scoreboard: FC<IScoreboard> = ({
     player: IPlayer,
     hammerThrow: IHammerThrows | undefined
   ) => {
-    if (!hammerThrow?.playerId || hammerThrow.playerId !== player.id)
-      return null;
+    if (!hammerThrow || hammerThrow.playerId !== player.id) return null;
     const SmallIcon = hammerThrow.accepted ? Tick : Cross;
     return (
       <SmallIcon
