@@ -33,6 +33,7 @@ const Scoreboard: FC<IScoreboard> = ({
   currentHole,
   currentPlayer,
 }) => {
+  // Function that returns which player has the hammer for a given hole
   const getHammerHolderForHole = (holeNumber: number) => {
     let currentHolder = 0;
     for (const throw_ of hammerThrows) {
@@ -46,12 +47,12 @@ const Scoreboard: FC<IScoreboard> = ({
     return currentHolder;
   };
 
+  // Function that returns throw details whenever a hammer is thrown on a given hole
   const getHammerThrow = (holeNumber: number) => {
-    return hammerThrows.find(
-      (currentThrow) => currentThrow.holeNumber === holeNumber
-    );
+    return hammerThrows.find((throw_) => throw_.holeNumber === holeNumber);
   };
 
+  // Function that renders the table header
   const renderTableHeader = () => {
     return (
       <thead>
@@ -71,6 +72,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Function that renders a row for each player
   const renderPlayerRow = (player: IPlayer) => {
     const isCurrentPlayer = player.id === currentPlayer;
     return (
@@ -82,6 +84,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Function that renders the cell for the player names
   const renderPlayerNameCell = (player: IPlayer, isCurrentPlayer: boolean) => {
     return (
       <PlayerName $isCurrentPlayer={isCurrentPlayer}>
@@ -100,6 +103,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Function that renders point cells for each hole
   const renderPointCells = (player: IPlayer, isCurrentPlayer: boolean) => {
     return player.points.map((point, index) => {
       const holeNumber = index + 1;
@@ -118,6 +122,7 @@ const Scoreboard: FC<IScoreboard> = ({
     });
   };
 
+  // Function that renders the contents of each cell
   const renderCellContent = (
     point: number,
     hammerThrow: IHammerThrows | undefined,
@@ -135,6 +140,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Function that renders the small hammer icons (tick or cross)
   const renderSmallHammerIcon = (
     player: IPlayer,
     hammerThrow: IHammerThrows | undefined
@@ -152,6 +158,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Function that renders the total score for each player
   const renderTotalScore = (player: IPlayer, isCurrentPlayer: boolean) => {
     return (
       <TotalScore $isCurrentPlayer={isCurrentPlayer}>
@@ -162,6 +169,7 @@ const Scoreboard: FC<IScoreboard> = ({
     );
   };
 
+  // Final rendering of the scoreboard
   return (
     <ScoreboardWrapper>
       <Tablewrapper>
