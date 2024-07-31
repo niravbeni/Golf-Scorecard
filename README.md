@@ -18,9 +18,7 @@ www.google.com
 
 The toggle buttons to visualize various states (hole progression and player switching).
 
-The scoreboard has a minimal hammer (<img src="./assets/png/hammer.png" width="30" height="30" alt="Hammer Icon">) feature implemented.
-
-The scoreboard shows the points scored per hole by each player, current player turn, an indicator of who has the hammer, and visual cues to throws with acceptance (<img src="./assets/png/tick.png" width="30" height="30" alt="Tick Icon">) and rejection (<img src="./assets/png/cross.png" width="30" height="30" alt="Cross Icon">) modes.
+The scoreboard shows the points scored per hole by each player, current player turn, an indicator of who has the hammer (<img src="./src/assets/png/hammer.png" width="20" height="20" alt="Hammer Icon">), and visual cues to throws with acceptance (<img src="./src/assets/png/tick.png" width="20" height="20" alt="Tick Icon">) and rejection (<img src="./src/assets/png/cross.png" width="20" height="20" alt="Cross Icon">) modes.
 
 ## My Goals
 
