@@ -6,7 +6,7 @@ import {
   CHARCOAL,
   WHITE,
   BLACK,
-  LILAC,
+  BLUE,
 } from "../../constants/colours";
 
 export const ScoreboardWrapper = styled.div`
@@ -65,7 +65,7 @@ export const TableCell = styled.td<{
   border-top: none;
   border-left: none;
   text-align: center;
-  background-color: ${(props) => (props.$isCurrentPlayer ? LILAC : LIGHT_GREY)};
+  background-color: ${(props) => (props.$isCurrentPlayer ? BLUE : LIGHT_GREY)};
   color: ${(props) => (props.$isCurrentPlayer ? WHITE : BLACK)};
   box-shadow: ${(props) =>
     props.$isShowPoints
